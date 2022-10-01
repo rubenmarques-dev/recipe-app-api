@@ -68,3 +68,6 @@ Equivalent packages for alpine:
  * musl-dev
 Docker best practise:
  * remove dependencies after install 
+
+Problem with docker compose:
+* depends_on ensures service starts, but does not ensure that application started
