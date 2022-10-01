@@ -13,14 +13,18 @@ EXPOSE 8000
 # will be update on docker compose
 ARG DEV=false
 
- ## python environment is created to avoid conflicts on dependencies with the docker image, install pip, copy and install requirements, remove /tmp to be lightweighted, new user on image (not use root user)
+ ## python environment is created to avoid conflicts on dependencies with the docker image, install pip, install postgresql-client, groups packages instalation,install dependencies,  copy and install requirements, install dev requirements,remove /tmp to be lightweighted, new user on image (not use root user)
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
+    apk add --update --no-cache postgresql-client && \
+    apk add --update --no-cache --virtual .tmp-build-deps \
+        build-base postgresql-dev musl-dev && \
     /py/bin/pip install -r /tmp/requirements.txt && \
     if [ $DEV = "true" ]; \
         then /py/bin/pip install -r /tmp/requirements.dev.txt ; \
     fi && \
     rm -rf /tmp && \
+    apk del .tmp-build-deps && \
     adduser \
           --disabled-password \
           --no-create-home \

@@ -1,0 +1,70 @@
+Django test framework for
+
+Based on the unittest library
+
+*Django adds features to the test framework
+** test classes
+** simulate authentication
+** temporary database
+
+*Django rest framework adds features
+** api test client
+
+*Where do you put tests?
+**tests.py on each application
+**tests/ subdirectory to split tests into
+**keep in mind:
+*** tests.pt or tests/
+***modules start with test_
+*** test directories must contain __init__.py
+
+Test database
+* test code that used the DB
+* specific database for the tests(automatically)
+
+Test classes
+
+*Simple test case
+** no database integration
+** useful if no database is required for your tests
+** save time executing tests
+* TestCase
+** Database integration
+** useful for testing code that used the database
+
+How to mock code?
+  use unittest.mock
+    MagicMock/ Mock - Replace Real Objects
+    patch - Overrides code for tests
+  
+Testing web Requests
+
+Django rest framework APICLIENT
+  Based on the django's testclient
+  Make Requests
+  Check result
+  Override authentication 
+
+Common testing problems
+* tests not running (missing __init__.py in tests/ dir; indentation of test classes; missing test prefix)
+* less tests than you have ()
+
+Django configure database and
+
+Steps for configuring database and
+  Configure django ( engine, hostname, port=5432, database name, username, password)
+  Install database adaptor (psycopg2 - most popular postgresSQL adaptor ) (supported by django) (installation options - spycopg2-binary(ok for development); spycopg2(compiles from source; required additional dependencies); easy to install with docker)
+  Update python requirements
+
+Installing Psycopg2:
+dependencies:
+ * C compiler
+ * python3-development
+ * libpq-dev
+Equivalent packages for alpine:
+ * postgresql-client
+ * build-base
+ * postgresql-dev
+ * musl-dev
+Docker best practise:
+ * remove dependencies after install 
