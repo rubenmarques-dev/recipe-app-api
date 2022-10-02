@@ -4,5 +4,6 @@
     "DOCKERHUB",
     "Psycopg",
     "pycache"
-  ]
+  ],
+  "python.formatting.provider": "black"
 }
