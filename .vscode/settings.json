@@ -4,7 +4,8 @@
     "djangorestframework",
     "DOCKERHUB",
     "Psycopg",
-    "pycache"
+    "pycache",
+    "viewsets"
   ],
   "python.formatting.provider": "black"
 }
